@@ -1,0 +1,16 @@
+{
+    "user_proxy": [
+        {
+            "content": "__PROMPT__",
+            "role": "user"
+        },
+        {
+            "content": "Apologies, but the prompt appears to be empty. Could you please provide more information or specify the task you'd like help with?",
+            "role": "assistant"
+        },
+        {
+            "content": "TERMINATE",
+            "role": "user"
+        }
+    ]
+}

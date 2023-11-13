@@ -1,0 +1,16 @@
+{
+    "assistant": [
+        {
+            "content": "__PROMPT__",
+            "role": "assistant"
+        },
+        {
+            "content": "Apologies, but the prompt appears to be empty. Could you please provide more information or specify the task you'd like help with?",
+            "role": "user"
+        },
+        {
+            "content": "TERMINATE",
+            "role": "assistant"
+        }
+    ]
+}
