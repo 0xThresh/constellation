@@ -1,0 +1,5 @@
+.vscode
+.env
+autogen
+.terraform
+terraform.tfstate*
