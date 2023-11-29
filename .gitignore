@@ -3,3 +3,4 @@
 autogen
 .terraform
 terraform.tfstate*
+**/node_modules/**
