@@ -1,0 +1,94 @@
+{
+  "sessionId": "130922966848602",
+  "inputTranscript": "USD",
+  "interpretations": [
+    {
+      "nluConfidence": 1.0,
+      "intent": {
+        "confirmationState": "None",
+        "name": "CheckPrice",
+        "slots": {
+          "cryptoTarget": {
+            "shape": "Scalar",
+            "value": {
+              "originalValue": "USD",
+              "resolvedValues": ["usd"],
+              "interpretedValue": "usd"
+            }
+          },
+          "cryptoBase": {
+            "shape": "Scalar",
+            "value": {
+              "originalValue": "ETH",
+              "resolvedValues": ["eth"],
+              "interpretedValue": "eth"
+            }
+          }
+        },
+        "state": "ReadyForFulfillment"
+      },
+      "interpretationSource": "Lex"
+    },
+    {
+      "intent": {
+        "confirmationState": "None",
+        "name": "FallbackIntent",
+        "slots": {},
+        "state": "ReadyForFulfillment"
+      },
+      "interpretationSource": "Lex"
+    }
+  ],
+  "bot": {
+    "aliasId": "TSTALIASID",
+    "aliasName": "TestBotAlias",
+    "name": "CheckCryptoPriceBot",
+    "version": "DRAFT",
+    "localeId": "en_US",
+    "id": "PLMNGDTLE2"
+  },
+  "responseContentType": "text/plain; charset=utf-8",
+  "sessionState": {
+    "sessionAttributes": {},
+    "intent": {
+      "confirmationState": "None",
+      "name": "CheckPrice",
+      "slots": {
+        "cryptoTarget": {
+          "shape": "Scalar",
+          "value": {
+            "originalValue": "USD",
+            "resolvedValues": ["usd"],
+            "interpretedValue": "usd"
+          }
+        },
+        "cryptoBase": {
+          "shape": "Scalar",
+          "value": {
+            "originalValue": "ETH",
+            "resolvedValues": ["eth"],
+            "interpretedValue": "eth"
+          }
+        }
+      },
+      "state": "ReadyForFulfillment"
+    },
+    "originatingRequestId": "b20622e0-0d49-418c-9de7-8b3fd66283e0"
+  },
+  "messageVersion": "1.0",
+  "invocationSource": "FulfillmentCodeHook",
+  "transcriptions": [
+    {
+      "resolvedContext": { "intent": "CheckPrice" },
+      "resolvedSlots": {
+        "cryptoTarget": {
+          "shape": "Scalar",
+          "value": { "originalValue": "USD", "resolvedValues": ["usd"] }
+        }
+      },
+      "transcriptionConfidence": 1.0,
+      "transcription": "USD"
+    }
+  ],
+  "inputMode": "Text"
+}

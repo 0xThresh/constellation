@@ -7,8 +7,10 @@ import logging
 def lambda_handler(event, context):
     logger = logging.getLogger()
     # Extract slots from Lex event
-    crypto_base = event['currentIntent']['slots']['cryptoBase']
-    crypto_target = event['currentIntent']['slots']['cryptoTarget']
+    print("FULL EVENT INFO")
+    print(event)
+    crypto_base = event['interpretations'][0]['intent']['slots']['cryptoBase']['value']['originalValue']
+    crypto_target = event['interpretations'][0]['intent']['slots']['cryptoTarget']['value']['originalValue']
     
     # Check if both cryptoBase and cryptoTarget are provided
     if not crypto_base or not crypto_target:
@@ -40,7 +42,7 @@ def lambda_handler(event, context):
         logger.info("DECIMALS")
         logger.info(decimals)
         latest_price = initial_price / (10 ** decimals)
-        message = f"The latest price for {crypto_base}/{crypto_target} is: {latest_price}"
+        message = f"The latest price for {crypto_base} {crypto_target} is: {latest_price}"
     except (IndexError, KeyError):
         message = "Could not parse the price information from the response."
         logger.error("Failed to parse price info from user response")
@@ -49,14 +51,22 @@ def lambda_handler(event, context):
 
 def close(event, fulfillment_state, message):
     response = {
-        'sessionAttributes': event['sessionAttributes'],
-        'dialogAction': {
-            'type': 'Close',
-            'fulfillmentState': fulfillment_state,
-            'message': {
-                'contentType': 'PlainText',
-                'content': message
+        "sessionState": {
+            "dialogAction": {
+                "type": "Close"
+            },
+            "intent": {
+                "name": "CheckPrice",
+                "state": "Fulfilled"
             }
-        }
+        },
+        "messages": [
+            {
+                "contentType": "PlainText",
+                "content": message,
+            },
+        ],
+        "requestAttributes": {}
     }
+
     return response
