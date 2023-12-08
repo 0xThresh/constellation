@@ -1,5 +1,5 @@
-import AWS from 'aws-sdk';
 import React, { useState } from 'react';
+import AWS from 'aws-sdk';
 
 const ChatBot = () => {
     const [inputText, setInputText] = useState('');
@@ -26,7 +26,11 @@ const ChatBot = () => {
 
         try {
             const response = await client.recognizeText(params).promise();
-            setMessages([...messages, { from: 'bot', text: response.messages[0].content }]);
+            // Use a functional update to ensure we have the latest state
+            setMessages(currentMessages => [
+                ...currentMessages,
+                { from: 'bot', text: response.messages[0].content }
+            ]);
         } catch (err) {
             console.error('Error sending message to bot:', err);
         }
@@ -36,7 +40,11 @@ const ChatBot = () => {
         e.preventDefault();
         if (!inputText.trim()) return;
 
-        setMessages([...messages, { from: 'user', text: inputText }]);
+        // Use a functional update here as well to immediately show the user message
+        setMessages(currentMessages => [
+            ...currentMessages,
+            { from: 'user', text: inputText }
+        ]);
         sendMessageToBot(inputText);
         setInputText('');
     };
@@ -44,6 +52,7 @@ const ChatBot = () => {
     return (
         <div>
             <h2>Chat with our Bot</h2>
+            <h3>Tell it what action to perform, such as "Check crypto price"</h3>
             <div>
                 {messages.map((message, index) => (
                     <p key={index}><b>{message.from}:</b> {message.text}</p>
@@ -54,6 +63,7 @@ const ChatBot = () => {
                     type="text"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    placeholder="Type a message..."
                 />
                 <button type="submit">Send</button>
             </form>
